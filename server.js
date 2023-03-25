@@ -8,6 +8,12 @@ import {
   GraphQLInt,
   GraphQLNonNull,
 } from 'graphql';
+//import { fileURLToPath } from 'url';
+import path from 'path';
+
+//const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.resolve();
+console.log(__dirname);
 
 const PORT = 5000;
 
@@ -142,5 +148,9 @@ app.use(
     graphiql: true,
   })
 );
+
+app.use('/test', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`));
